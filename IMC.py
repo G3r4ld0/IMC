@@ -17,27 +17,21 @@ class PessoaIMC:
     def resultIMC(self, nome, data):
         imc = self.calculaIMC()
         print(imc)
-        if 16.0 <= imc <= 16.99:
-            situacao = "baixo peso grau II"
-        elif 17.0 <= imc <= 18.49:
-            situacao = "baixo peso grau I"
-        elif 18.50 <= imc <= 24.99:
-            situacao = "peso ideal"
-        elif 25.0 <= imc <= 29.99:
-            situacao = "sobrepeso"
-        elif 30.0 <= imc <= 34.99:
-            situacao = "obesidade grau I"
-        elif 35.0 <= imc <= 39.99:
-            situacao = "obesidade grau II"
+        valores = [16.0, 17.0, 18.50, 25.0, 30.0, 35.0, 39.99]
+        situacoes = ["baixo peso grau II", "baixo peso grau I", "peso ideal", "sobrepeso", "obesidade grau I", "obesidade grau II"]
+        for valor in range(len(valores) -1):
+            if valores[valor] <= imc < valores[valor+1]:
+                situacao = situacoes[valor]
+                break
         else:
-            return "margem de valores apresentados não aceita"
+            return "Margem de valores não aceita"
 
         return f"Nome: {nome} \nData de Nascimento: {data} \nPeso: {self.peso} \nAltura: {self.altura} \nSituação: {situacao} "
 
-nome = input("Qual o seu nome? \nR: ")
-data = input("Qual a sua data de nascimento? \nR: ")
-peso = float(input("Qual o seu peso? \nR: "))
-altura = float(input("Qual a sua altura? \nR:"))
+# nome = input("Qual o seu nome? \nR: ")
+# data = input("Qual a sua data de nascimento? \nR: ")
+# peso = float(input("Qual o seu peso? \nR: "))
+# altura = float(input("Qual a sua altura? \nR:"))
 
-troxa = PessoaIMC(peso, altura)
-print(troxa.resultIMC(nome, data))
+troxa = PessoaIMC(60, 1.83)
+print(troxa.resultIMC('lenner', '28/12/2003'))
